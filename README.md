@@ -39,6 +39,42 @@ client.on_disconnect(on_disconnect)
 client.run_forever()
 ```
 
+## Terminal CLI
+
+From the repository checkout, install the package first:
+
+```bash
+python -m pip install -e .
+```
+
+Then receive live DLT TCP logs directly from a terminal:
+
+```bash
+py-dlt-client --host localhost --port 3490
+```
+
+If you have not installed the console script yet, run the module form from the
+source checkout:
+
+```bash
+python -m py_dlt_client --host localhost --port 3490
+```
+
+Common diagnostic options:
+
+```bash
+py-dlt-client --host 192.168.1.10 --strict
+py-dlt-client --host 192.168.1.10 --reconnect --reconnect-interval 3
+py-dlt-client --host 192.168.1.10 --apid SYS --ctid INIT
+py-dlt-client --host 192.168.1.10 --level ERROR --level WARN
+py-dlt-client --host 192.168.1.10 --verbose-only
+py-dlt-client --host 192.168.1.10 --non-verbose-only
+```
+
+Message lines are written to stdout. Connection, parser, disconnect, and
+reconnect diagnostics are written to stderr. The CLI receives live TCP DLT
+streams only; it does not read `.dlt` storage files.
+
 ## Output Semantics
 
 Verbose messages with supported argument types are formatted as readable text:
