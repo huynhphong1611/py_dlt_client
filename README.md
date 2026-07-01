@@ -1,1 +1,59 @@
 # py_dlt_client
+
+Pure Python DLT V1 TCP receiver/parser for Windows applications.
+
+`py_dlt_client` connects to a `dlt-daemon` TCP endpoint, reconstructs binary DLT
+V1 frames, parses header metadata, decodes supported verbose payload arguments,
+and exposes `DltMessage` objects plus honest readable text output.
+
+## Iterator Usage
+
+```python
+from py_dlt_client import DltClient
+
+client = DltClient(host="192.168.1.10", port=3490, strict=False)
+
+for message in client.messages():
+    print(message.text)
+```
+
+## Callback Usage
+
+```python
+from py_dlt_client import DltClient
+
+def on_message(message):
+    print(message.text)
+
+def on_disconnect(error):
+    print(f"Disconnected: {error}")
+
+client = DltClient(
+    host="192.168.1.10",
+    auto_reconnect=True,
+    reconnect_interval=3,
+    strict=False,
+)
+client.on_message(on_message)
+client.on_disconnect(on_disconnect)
+client.run_forever()
+```
+
+## Output Semantics
+
+Verbose messages with supported argument types are formatted as readable text:
+
+```text
+[ECU1] [SYS:INIT] INFO: System init started
+```
+
+Non-verbose messages do not have enough information to reconstruct original log
+text without external FIBEX/ARXML descriptions, so they use payload hex fallback:
+
+```text
+[ECU1] [TEL:CRSH] NON_VERBOSE: payload_hex=0000000c01ff90aa
+```
+
+Unsupported verbose argument types are preserved as raw bytes/hex in non-strict
+mode. In strict mode, parser errors and unsupported types are raised through typed
+exceptions.

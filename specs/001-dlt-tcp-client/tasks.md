@@ -30,11 +30,11 @@ description: "Task list for Pure Python DLT V1 TCP Client for Windows"
 
 **Purpose**: Initialize the pure Python package, test layout, and project metadata.
 
-- [ ] T001 Create package and test directory structure in `src/py_dlt_client/`, `tests/fixtures/`, `tests/unit/`, `tests/integration/`, and `tests/windows/`
-- [ ] T002 Create project metadata with CPython 3.11+, standard-library runtime dependencies, and pytest test extra in `pyproject.toml`
-- [ ] T003 Configure pytest discovery and strict warnings in `pyproject.toml`
-- [ ] T004 [P] Add package marker and public export placeholder in `src/py_dlt_client/__init__.py`
-- [ ] T005 [P] Add typed package marker in `src/py_dlt_client/py.typed`
+- [X] T001 Create package and test directory structure in `src/py_dlt_client/`, `tests/fixtures/`, `tests/unit/`, `tests/integration/`, and `tests/windows/`
+- [X] T002 Create project metadata with CPython 3.11+, standard-library runtime dependencies, and pytest test extra in `pyproject.toml`
+- [X] T003 Configure pytest discovery and strict warnings in `pyproject.toml`
+- [X] T004 [P] Add package marker and public export placeholder in `src/py_dlt_client/__init__.py`
+- [X] T005 [P] Add typed package marker in `src/py_dlt_client/py.typed`
 
 ---
 
@@ -44,14 +44,14 @@ description: "Task list for Pure Python DLT V1 TCP Client for Windows"
 
 **CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T006 Define DLT constants, header flags, type-info masks, log level mapping, default port, and max frame size in `src/py_dlt_client/constants.py`
-- [ ] T007 [P] Define typed exception hierarchy and error context fields in `src/py_dlt_client/exceptions.py`
-- [ ] T008 [P] Define dataclasses for `DltHeader`, `DltExtendedHeader`, `DltArgument`, `DltMessage`, `DltFilter`, `DltClientConfig`, and `DltErrorInfo` in `src/py_dlt_client/models.py`
-- [ ] T009 [P] Create deterministic DLT V1 hex/binary fixture builders for standard, optional, extended, verbose, non-verbose, malformed, and truncated frames in `tests/fixtures/dlt_frames.py`
-- [ ] T010 [P] Create shared pytest fixtures for importing fixture builders and asserting message fields in `tests/conftest.py`
-- [ ] T011 [P] Create local controllable TCP server test harness for fragmented, coalesced, timeout, and disconnect scenarios in `tests/integration/tcp_harness.py`
-- [ ] T012 [P] Create Windows socket cleanup assertion helpers for repeated connect/close validation in `tests/windows/cleanup_helpers.py`
-- [ ] T013 Export foundational public models and exceptions from `src/py_dlt_client/__init__.py`
+- [X] T006 Define DLT constants, header flags, type-info masks, log level mapping, default port, and max frame size in `src/py_dlt_client/constants.py`
+- [X] T007 [P] Define typed exception hierarchy and error context fields in `src/py_dlt_client/exceptions.py`
+- [X] T008 [P] Define dataclasses for `DltHeader`, `DltExtendedHeader`, `DltArgument`, `DltMessage`, `DltFilter`, `DltClientConfig`, and `DltErrorInfo` in `src/py_dlt_client/models.py`
+- [X] T009 [P] Create deterministic DLT V1 hex/binary fixture builders for standard, optional, extended, verbose, non-verbose, malformed, and truncated frames in `tests/fixtures/dlt_frames.py`
+- [X] T010 [P] Create shared pytest fixtures for importing fixture builders and asserting message fields in `tests/conftest.py`
+- [X] T011 [P] Create local controllable TCP server test harness for fragmented, coalesced, timeout, and disconnect scenarios in `tests/integration/tcp_harness.py`
+- [X] T012 [P] Create Windows socket cleanup assertion helpers for repeated connect/close validation in `tests/windows/cleanup_helpers.py`
+- [X] T013 Export foundational public models and exceptions from `src/py_dlt_client/__init__.py`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin.
 
@@ -67,22 +67,22 @@ description: "Task list for Pure Python DLT V1 TCP Client for Windows"
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation.**
 
-- [ ] T014 [P] [US1] Add standard header parsing golden-frame tests in `tests/unit/test_headers_standard.py`
-- [ ] T015 [P] [US1] Add optional ECU/session/timestamp and extended header parsing tests in `tests/unit/test_headers_extended.py`
-- [ ] T016 [P] [US1] Add invalid length, truncated header, and oversized frame tests in `tests/unit/test_frame_errors.py`
-- [ ] T017 [P] [US1] Add frame reader tests for partial frames and multiple frames in one buffer in `tests/unit/test_frame_reader.py`
-- [ ] T018 [P] [US1] Add local TCP integration test for receiving structured DLT messages in stream order in `tests/integration/test_receive_structured.py`
+- [X] T014 [P] [US1] Add standard header parsing golden-frame tests in `tests/unit/test_headers_standard.py`
+- [X] T015 [P] [US1] Add optional ECU/session/timestamp and extended header parsing tests in `tests/unit/test_headers_extended.py`
+- [X] T016 [P] [US1] Add invalid length, truncated header, and oversized frame tests in `tests/unit/test_frame_errors.py`
+- [X] T017 [P] [US1] Add frame reader tests for partial frames and multiple frames in one buffer in `tests/unit/test_frame_reader.py`
+- [X] T018 [P] [US1] Add local TCP integration test for receiving structured DLT messages in stream order in `tests/integration/test_receive_structured.py`
 
 ### Implementation for User Story 1
 
-- [ ] T019 [US1] Implement DLT standard header parsing, optional field parsing, endianness detection, and length validation in `src/py_dlt_client/headers.py`
-- [ ] T020 [US1] Implement extended header parsing, verbose flag detection, APID/CTID decoding, and log level mapping in `src/py_dlt_client/headers.py`
-- [ ] T021 [US1] Implement binary frame buffering, minimum-header inspection, `read_exact`, partial-frame handling, multi-frame emission, and max-frame validation in `src/py_dlt_client/frame_reader.py`
-- [ ] T022 [US1] Implement raw message assembly for messages with and without extended headers in `src/py_dlt_client/models.py`
-- [ ] T023 [US1] Implement initial `DltClient.connect()`, `DltClient.close()`, and `DltClient.messages()` stream loop for structured message delivery in `src/py_dlt_client/client.py`
-- [ ] T024 [US1] Wire parser/frame reader errors to typed exceptions and non-strict message error metadata in `src/py_dlt_client/client.py`
-- [ ] T025 [US1] Export `DltClient` and parser-related public types from `src/py_dlt_client/__init__.py`
-- [ ] T026 [US1] Run and document passing US1 validation command `python -m pytest tests/unit/test_headers_standard.py tests/unit/test_headers_extended.py tests/unit/test_frame_errors.py tests/unit/test_frame_reader.py tests/integration/test_receive_structured.py` in `specs/001-dlt-tcp-client/quickstart.md`
+- [X] T019 [US1] Implement DLT standard header parsing, optional field parsing, endianness detection, and length validation in `src/py_dlt_client/headers.py`
+- [X] T020 [US1] Implement extended header parsing, verbose flag detection, APID/CTID decoding, and log level mapping in `src/py_dlt_client/headers.py`
+- [X] T021 [US1] Implement binary frame buffering, minimum-header inspection, `read_exact`, partial-frame handling, multi-frame emission, and max-frame validation in `src/py_dlt_client/frame_reader.py`
+- [X] T022 [US1] Implement raw message assembly for messages with and without extended headers in `src/py_dlt_client/models.py`
+- [X] T023 [US1] Implement initial `DltClient.connect()`, `DltClient.close()`, and `DltClient.messages()` stream loop for structured message delivery in `src/py_dlt_client/client.py`
+- [X] T024 [US1] Wire parser/frame reader errors to typed exceptions and non-strict message error metadata in `src/py_dlt_client/client.py`
+- [X] T025 [US1] Export `DltClient` and parser-related public types from `src/py_dlt_client/__init__.py`
+- [X] T026 [US1] Run and document passing US1 validation command `python -m pytest tests/unit/test_headers_standard.py tests/unit/test_headers_extended.py tests/unit/test_frame_errors.py tests/unit/test_frame_reader.py tests/integration/test_receive_structured.py` in `specs/001-dlt-tcp-client/quickstart.md`
 
 **Checkpoint**: User Story 1 is independently functional and provides the MVP.
 
@@ -96,25 +96,25 @@ description: "Task list for Pure Python DLT V1 TCP Client for Windows"
 
 ### Tests for User Story 2 (REQUIRED)
 
-- [ ] T027 [P] [US2] Add verbose string decoding tests including null terminator and invalid UTF-8 fallback in `tests/unit/test_payload_string.py`
-- [ ] T028 [P] [US2] Add signed and unsigned integer decoding tests for int8/int16/int32/int64 and uint8/uint16/uint32/uint64 in `tests/unit/test_payload_int.py`
-- [ ] T029 [P] [US2] Add boolean and float32/float64 decoding tests with endianness coverage in `tests/unit/test_payload_bool_float.py`
-- [ ] T030 [P] [US2] Add raw bytes and unsupported argument preservation tests in `tests/unit/test_payload_raw_unsupported.py`
-- [ ] T031 [P] [US2] Add formatter tests for verbose, non-verbose, unknown level, and unsupported payload output in `tests/unit/test_formatter.py`
-- [ ] T032 [P] [US2] Add integration test for mixed verbose, non-verbose, and unsupported frames continuing in non-strict mode in `tests/integration/test_decode_and_format_stream.py`
+- [X] T027 [P] [US2] Add verbose string decoding tests including null terminator and invalid UTF-8 fallback in `tests/unit/test_payload_string.py`
+- [X] T028 [P] [US2] Add signed and unsigned integer decoding tests for int8/int16/int32/int64 and uint8/uint16/uint32/uint64 in `tests/unit/test_payload_int.py`
+- [X] T029 [P] [US2] Add boolean and float32/float64 decoding tests with endianness coverage in `tests/unit/test_payload_bool_float.py`
+- [X] T030 [P] [US2] Add raw bytes and unsupported argument preservation tests in `tests/unit/test_payload_raw_unsupported.py`
+- [X] T031 [P] [US2] Add formatter tests for verbose, non-verbose, unknown level, and unsupported payload output in `tests/unit/test_formatter.py`
+- [X] T032 [P] [US2] Add integration test for mixed verbose, non-verbose, and unsupported frames continuing in non-strict mode in `tests/integration/test_decode_and_format_stream.py`
 
 ### Implementation for User Story 2
 
-- [ ] T033 [US2] Implement verbose type-info parsing and argument-count handling in `src/py_dlt_client/payload_verbose.py`
-- [ ] T034 [US2] Implement string argument decoding with length handling, null stripping, UTF-8 decode, and documented fallback in `src/py_dlt_client/payload_verbose.py`
-- [ ] T035 [US2] Implement signed and unsigned integer argument decoding with message endianness in `src/py_dlt_client/payload_verbose.py`
-- [ ] T036 [US2] Implement boolean, float32, float64, and raw bytes argument decoding with message endianness in `src/py_dlt_client/payload_verbose.py`
-- [ ] T037 [US2] Implement unsupported verbose argument handling for strict and non-strict modes in `src/py_dlt_client/payload_verbose.py`
-- [ ] T038 [US2] Integrate verbose payload decoding and non-verbose payload preservation into message assembly in `src/py_dlt_client/client.py`
-- [ ] T039 [US2] Implement `format_message()` for verbose text, raw bytes display, non-verbose fallback, and unknown levels in `src/py_dlt_client/formatter.py`
-- [ ] T040 [US2] Set `DltMessage.text`, `DltMessage.args`, `DltMessage.payload_hex`, and unsupported error metadata consistently in `src/py_dlt_client/models.py`
-- [ ] T041 [US2] Export `format_message` and `DltArgument` from `src/py_dlt_client/__init__.py`
-- [ ] T042 [US2] Run and document passing US2 validation command `python -m pytest tests/unit/test_payload_string.py tests/unit/test_payload_int.py tests/unit/test_payload_bool_float.py tests/unit/test_payload_raw_unsupported.py tests/unit/test_formatter.py tests/integration/test_decode_and_format_stream.py` in `specs/001-dlt-tcp-client/quickstart.md`
+- [X] T033 [US2] Implement verbose type-info parsing and argument-count handling in `src/py_dlt_client/payload_verbose.py`
+- [X] T034 [US2] Implement string argument decoding with length handling, null stripping, UTF-8 decode, and documented fallback in `src/py_dlt_client/payload_verbose.py`
+- [X] T035 [US2] Implement signed and unsigned integer argument decoding with message endianness in `src/py_dlt_client/payload_verbose.py`
+- [X] T036 [US2] Implement boolean, float32, float64, and raw bytes argument decoding with message endianness in `src/py_dlt_client/payload_verbose.py`
+- [X] T037 [US2] Implement unsupported verbose argument handling for strict and non-strict modes in `src/py_dlt_client/payload_verbose.py`
+- [X] T038 [US2] Integrate verbose payload decoding and non-verbose payload preservation into message assembly in `src/py_dlt_client/client.py`
+- [X] T039 [US2] Implement `format_message()` for verbose text, raw bytes display, non-verbose fallback, and unknown levels in `src/py_dlt_client/formatter.py`
+- [X] T040 [US2] Set `DltMessage.text`, `DltMessage.args`, `DltMessage.payload_hex`, and unsupported error metadata consistently in `src/py_dlt_client/models.py`
+- [X] T041 [US2] Export `format_message` and `DltArgument` from `src/py_dlt_client/__init__.py`
+- [X] T042 [US2] Run and document passing US2 validation command `python -m pytest tests/unit/test_payload_string.py tests/unit/test_payload_int.py tests/unit/test_payload_bool_float.py tests/unit/test_payload_raw_unsupported.py tests/unit/test_formatter.py tests/integration/test_decode_and_format_stream.py` in `specs/001-dlt-tcp-client/quickstart.md`
 
 **Checkpoint**: User Stories 1 and 2 work independently and together.
 
@@ -128,25 +128,25 @@ description: "Task list for Pure Python DLT V1 TCP Client for Windows"
 
 ### Tests for User Story 3 (REQUIRED)
 
-- [ ] T043 [P] [US3] Add public API contract tests for constructor validation, exports, callback registration, and iterator behavior in `tests/unit/test_public_api.py`
-- [ ] T044 [P] [US3] Add filter tests for ECU, APID, CTID, level, verbose-only, and non-verbose-only delivery in `tests/unit/test_filters.py`
-- [ ] T045 [P] [US3] Add strict and non-strict error behavior tests for parser and unsupported-type failures in `tests/unit/test_error_modes.py`
-- [ ] T046 [P] [US3] Add reconnect timing, retry limit, disconnect, reconnect-attempt, and error callback integration tests in `tests/integration/test_reconnect_callbacks.py`
-- [ ] T047 [P] [US3] Add iterator consumption and close-on-exit integration tests in `tests/integration/test_iterator_lifecycle.py`
-- [ ] T048 [P] [US3] Add Windows repeated connect/read/close cleanup tests in `tests/windows/test_socket_cleanup.py`
-- [ ] T049 [P] [US3] Add logging tests proving core library uses `py_dlt_client` logger and no direct stdout/stderr output in `tests/unit/test_logging.py`
+- [X] T043 [P] [US3] Add public API contract tests for constructor validation, exports, callback registration, and iterator behavior in `tests/unit/test_public_api.py`
+- [X] T044 [P] [US3] Add filter tests for ECU, APID, CTID, level, verbose-only, and non-verbose-only delivery in `tests/unit/test_filters.py`
+- [X] T045 [P] [US3] Add strict and non-strict error behavior tests for parser and unsupported-type failures in `tests/unit/test_error_modes.py`
+- [X] T046 [P] [US3] Add reconnect timing, retry limit, disconnect, reconnect-attempt, and error callback integration tests in `tests/integration/test_reconnect_callbacks.py`
+- [X] T047 [P] [US3] Add iterator consumption and close-on-exit integration tests in `tests/integration/test_iterator_lifecycle.py`
+- [X] T048 [P] [US3] Add Windows repeated connect/read/close cleanup tests in `tests/windows/test_socket_cleanup.py`
+- [X] T049 [P] [US3] Add logging tests proving core library uses `py_dlt_client` logger and no direct stdout/stderr output in `tests/unit/test_logging.py`
 
 ### Implementation for User Story 3
 
-- [ ] T050 [US3] Implement `DltFilter` normalization, validation, and message matching in `src/py_dlt_client/filters.py`
-- [ ] T051 [US3] Integrate filter application before callback and iterator delivery in `src/py_dlt_client/client.py`
-- [ ] T052 [US3] Implement callback registration methods `on_message`, `on_connect`, `on_disconnect`, `on_reconnect_attempt`, and `on_error` in `src/py_dlt_client/client.py`
-- [ ] T053 [US3] Implement `run_forever()` callback loop and callback exception routing in `src/py_dlt_client/client.py`
-- [ ] T054 [US3] Implement automatic reconnect with configurable interval, retry limit, disconnect events, reconnect-attempt events, and no busy loop in `src/py_dlt_client/client.py`
-- [ ] T055 [US3] Harden iterator lifecycle so generator exit and `close()` release socket resources deterministically in `src/py_dlt_client/client.py`
-- [ ] T056 [US3] Add package logger usage for parser, frame reader, and client diagnostics without direct `print()` calls in `src/py_dlt_client/client.py`
-- [ ] T057 [US3] Export `DltFilter` and callback-ready API surface from `src/py_dlt_client/__init__.py`
-- [ ] T058 [US3] Run and document passing US3 validation command `python -m pytest tests/unit/test_public_api.py tests/unit/test_filters.py tests/unit/test_error_modes.py tests/unit/test_logging.py tests/integration/test_reconnect_callbacks.py tests/integration/test_iterator_lifecycle.py tests/windows/test_socket_cleanup.py` in `specs/001-dlt-tcp-client/quickstart.md`
+- [X] T050 [US3] Implement `DltFilter` normalization, validation, and message matching in `src/py_dlt_client/filters.py`
+- [X] T051 [US3] Integrate filter application before callback and iterator delivery in `src/py_dlt_client/client.py`
+- [X] T052 [US3] Implement callback registration methods `on_message`, `on_connect`, `on_disconnect`, `on_reconnect_attempt`, and `on_error` in `src/py_dlt_client/client.py`
+- [X] T053 [US3] Implement `run_forever()` callback loop and callback exception routing in `src/py_dlt_client/client.py`
+- [X] T054 [US3] Implement automatic reconnect with configurable interval, retry limit, disconnect events, reconnect-attempt events, and no busy loop in `src/py_dlt_client/client.py`
+- [X] T055 [US3] Harden iterator lifecycle so generator exit and `close()` release socket resources deterministically in `src/py_dlt_client/client.py`
+- [X] T056 [US3] Add package logger usage for parser, frame reader, and client diagnostics without direct `print()` calls in `src/py_dlt_client/client.py`
+- [X] T057 [US3] Export `DltFilter` and callback-ready API surface from `src/py_dlt_client/__init__.py`
+- [X] T058 [US3] Run and document passing US3 validation command `python -m pytest tests/unit/test_public_api.py tests/unit/test_filters.py tests/unit/test_error_modes.py tests/unit/test_logging.py tests/integration/test_reconnect_callbacks.py tests/integration/test_iterator_lifecycle.py tests/windows/test_socket_cleanup.py` in `specs/001-dlt-tcp-client/quickstart.md`
 
 **Checkpoint**: All user stories are independently functional.
 
@@ -156,15 +156,15 @@ description: "Task list for Pure Python DLT V1 TCP Client for Windows"
 
 **Purpose**: Complete packaging, docs, reference comparison, and full validation across all stories.
 
-- [ ] T059 [P] Add README usage examples for iterator, callback, non-verbose fallback, and strict/non-strict behavior in `README.md`
-- [ ] T060 [P] Add API documentation notes for public exports, typed errors, and formatter semantics in `docs/api.md`
-- [ ] T061 [P] Add DLT scope documentation explaining supported DLT V1 payload types and out-of-scope DLT V2/FIBEX/ARXML behavior in `docs/dlt-scope.md`
-- [ ] T062 [P] Add reference comparison procedure for DLT Viewer or dlt-receive sample streams in `docs/reference-comparison.md`
-- [ ] T063 Run full unit and integration test suite and record command/results in `specs/001-dlt-tcp-client/quickstart.md`
-- [ ] T064 Run Windows validation suite and record command/results in `specs/001-dlt-tcp-client/quickstart.md`
-- [ ] T065 Audit `pyproject.toml` to confirm no native runtime dependencies and document result in `specs/001-dlt-tcp-client/quickstart.md`
-- [ ] T066 Review all public contract requirements against implementation and update any contract drift in `specs/001-dlt-tcp-client/contracts/public-api.md`
-- [ ] T067 Review parser contract requirements against implementation and update any contract drift in `specs/001-dlt-tcp-client/contracts/parser-contract.md`
+- [X] T059 [P] Add README usage examples for iterator, callback, non-verbose fallback, and strict/non-strict behavior in `README.md`
+- [X] T060 [P] Add API documentation notes for public exports, typed errors, and formatter semantics in `docs/api.md`
+- [X] T061 [P] Add DLT scope documentation explaining supported DLT V1 payload types and out-of-scope DLT V2/FIBEX/ARXML behavior in `docs/dlt-scope.md`
+- [X] T062 [P] Add reference comparison procedure for DLT Viewer or dlt-receive sample streams in `docs/reference-comparison.md`
+- [X] T063 Run full unit and integration test suite and record command/results in `specs/001-dlt-tcp-client/quickstart.md`
+- [X] T064 Run Windows validation suite and record command/results in `specs/001-dlt-tcp-client/quickstart.md`
+- [X] T065 Audit `pyproject.toml` to confirm no native runtime dependencies and document result in `specs/001-dlt-tcp-client/quickstart.md`
+- [X] T066 Review all public contract requirements against implementation and update any contract drift in `specs/001-dlt-tcp-client/contracts/public-api.md`
+- [X] T067 Review parser contract requirements against implementation and update any contract drift in `specs/001-dlt-tcp-client/contracts/parser-contract.md`
 
 ---
 

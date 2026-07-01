@@ -111,6 +111,17 @@ Expected outcome:
 - Differences for unsupported or out-of-scope payload types are documented as raw
   preserved bytes rather than treated as decoded text.
 
+## Current Local Validation Notes
+
+- Runtime dependency audit: `pyproject.toml` declares no runtime dependencies.
+- Test dependency audit: `pytest` is declared only in the `test` extra.
+- Local validation on 2026-07-01 used Python 3.10.12 and pytest 9.1.1.
+- US1 validation command passed: 13 tests.
+- US2 validation command passed: 15 tests.
+- US3 validation command passed: 11 tests.
+- Full suite passed: 39 tests.
+- Windows cleanup validation command passed: 1 test.
+
 ## Artifact References
 
 - Data model: [data-model.md](./data-model.md)
